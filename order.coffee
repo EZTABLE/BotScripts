@@ -9,7 +9,7 @@
 #
 # Commands:
 #   hubot 點餐開始
-#   hubot <item>
+#   hubot <item>  <(\\W+)(\\$\\d+)>("cathy:牛肉麵 $80")
 #   hubot 點餐結束
 #
 _ = require 'underscore'
@@ -45,7 +45,7 @@ module.exports = (robot) ->
 
   robot.catchAll (msg)->
     if isOrdering
-      regex = new RegExp "#{robot.name}(.+)"
+      regex = new RegExp "#{robot.name} (\\W+)(\\$\\d+)"
       text = msg.message.text
       matches = text.match(regex)
       if matches
